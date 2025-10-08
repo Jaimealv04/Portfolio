@@ -72,6 +72,52 @@ export const experiences: Experience[] = [
   },
   {
     id: '2',
+    type: 'internship',
+    content: {
+      en: {
+        title: 'Software Developer Intern',
+        company: 'ARMS',
+        period: '2023',
+        location: 'Madrid, Spain',
+        brief:
+          '4-month internship focused on developing integration solutions with Outlook and Azure for automated email processing and information extraction.',
+        fullDescription:
+          'This internship lasted 4 months. As final project, I developed an integration module with Outlook and Azure to access client emails and extract information from sent files. Processed them with OpenAI API and used Named Entity Recognition (NER) to extract important information. This solution automated email processing workflows and improved data extraction accuracy for business processes.',
+        technologies: [
+          'Microsoft Azure',
+          'Outlook API',
+          'OpenAI API',
+          'NLP',
+          'Named Entity Recognition',
+          'Python',
+          'TypeScript',
+          'REST APIs',
+        ],
+      },
+      es: {
+        title: 'Desarrollador de Software en Prácticas',
+        company: 'ARMS',
+        period: '2023',
+        location: 'Madrid, España',
+        brief:
+          'Prácticas de 4 meses enfocadas en el desarrollo de soluciones de integración con Outlook y Azure para procesamiento automatizado de correos y extracción de información.',
+        fullDescription:
+          'Estas prácticas tuvieron una duración de 4 meses. Como trabajo final realicé un módulo de integración con Outlook y Azure para poder acceder a los correos de los clientes y sacar la información de los archivos enviados. Los procesé con la API de OpenAI y mediante NER (Named Entity Recognition) extraje la información importante. Esta solución automatizó los flujos de procesamiento de correos y mejoró la precisión de extracción de datos para procesos de negocio.',
+        technologies: [
+          'Microsoft Azure',
+          'Outlook API',
+          'OpenAI API',
+          'NLP',
+          'Named Entity Recognition',
+          'Python',
+          'TypeScript',
+          'REST APIs',
+        ],
+      },
+    },
+  },
+  {
+    id: '3',
     type: 'work',
     content: {
       en: {
@@ -118,52 +164,6 @@ export const experiences: Experience[] = [
           'JIRA',
           'Docker',
           'Machine Learning',
-        ],
-      },
-    },
-  },
-  {
-    id: '3',
-    type: 'internship',
-    content: {
-      en: {
-        title: 'Software Developer Intern',
-        company: 'ARMS',
-        period: '2023',
-        location: 'Madrid, Spain',
-        brief:
-          '4-month internship focused on developing integration solutions with Outlook and Azure for automated email processing and information extraction.',
-        fullDescription:
-          'This internship lasted 4 months. As final project, I developed an integration module with Outlook and Azure to access client emails and extract information from sent files. Processed them with OpenAI API and used Named Entity Recognition (NER) to extract important information. This solution automated email processing workflows and improved data extraction accuracy for business processes.',
-        technologies: [
-          'Microsoft Azure',
-          'Outlook API',
-          'OpenAI API',
-          'NLP',
-          'Named Entity Recognition',
-          'Python',
-          'TypeScript',
-          'REST APIs',
-        ],
-      },
-      es: {
-        title: 'Desarrollador de Software en Prácticas',
-        company: 'ARMS',
-        period: '2023',
-        location: 'Madrid, España',
-        brief:
-          'Prácticas de 4 meses enfocadas en el desarrollo de soluciones de integración con Outlook y Azure para procesamiento automatizado de correos y extracción de información.',
-        fullDescription:
-          'Estas prácticas tuvieron una duración de 4 meses. Como trabajo final realicé un módulo de integración con Outlook y Azure para poder acceder a los correos de los clientes y sacar la información de los archivos enviados. Los procesé con la API de OpenAI y mediante NER (Named Entity Recognition) extraje la información importante. Esta solución automatizó los flujos de procesamiento de correos y mejoró la precisión de extracción de datos para procesos de negocio.',
-        technologies: [
-          'Microsoft Azure',
-          'Outlook API',
-          'OpenAI API',
-          'NLP',
-          'Named Entity Recognition',
-          'Python',
-          'TypeScript',
-          'REST APIs',
         ],
       },
     },
