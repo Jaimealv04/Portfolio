@@ -71,7 +71,7 @@ export const experiences: Experience[] = [
     },
   },
   {
-    id: '2',
+    id: '4',
     type: 'internship',
     content: {
       en: {
@@ -117,7 +117,7 @@ export const experiences: Experience[] = [
     },
   },
   {
-    id: '3',
+    id: '2',
     type: 'work',
     content: {
       en: {
@@ -164,6 +164,60 @@ export const experiences: Experience[] = [
           'JIRA',
           'Docker',
           'Machine Learning',
+        ],
+      },
+    },
+  },
+  {
+    id: '0',
+    type: 'education',
+    content: {
+      en: {
+        title: 'Software Engineering',
+        company: 'IMMUNE Technology Institute',
+        period: '2020 - 2023',
+        location: 'Madrid, Spain',
+        brief:
+          'Comprehensive software engineering program covering full-stack development, algorithms, and modern programming practices.',
+        fullDescription:
+          '• Completed comprehensive software engineering curriculum with focus on practical application\n• Mastered full-stack development using modern web technologies and frameworks\n• Gained expertise in object-oriented programming principles and design patterns\n• Developed proficiency in database design and management with SQL and Oracle\n• Applied SOLID principles and clean code practices in software development projects\n• Built mobile applications using Android Studio and Java\n• Learned algorithm design and data structure optimization techniques\n• Gained experience in both frontend and backend web development\n• Developed strong foundation in HTML5, CSS3, and JavaScript\n• Acquired essential soft skills for professional software development environments',
+        technologies: [
+          'HTML5',
+          'CSS3',
+          'JavaScript',
+          'Java',
+          'MySQL',
+          'Oracle Database',
+          'Android Studio',
+          'SQL',
+          'SOLID Principles',
+          'Full Stack Development',
+          'Algorithms',
+          'Object-Oriented Programming',
+        ],
+      },
+      es: {
+        title: 'Ingeniería de Software',
+        company: 'IMMUNE Technology Institute',
+        period: '2020 - 2023',
+        location: 'Madrid, España',
+        brief:
+          'Programa integral de ingeniería de software cubriendo desarrollo full-stack, algoritmos y prácticas de programación modernas.',
+        fullDescription:
+          '• Completé un currículum integral de ingeniería de software con enfoque en aplicación práctica\n• Dominé el desarrollo full-stack usando tecnologías y frameworks web modernos\n• Adquirí experiencia en principios de programación orientada a objetos y patrones de diseño\n• Desarrollé competencia en diseño y gestión de bases de datos con SQL y Oracle\n• Apliqué principios SOLID y prácticas de código limpio en proyectos de desarrollo de software\n• Construí aplicaciones móviles usando Android Studio y Java\n• Aprendí diseño de algoritmos y técnicas de optimización de estructuras de datos\n• Adquirí experiencia tanto en desarrollo frontend como backend\n• Desarrollé una base sólida en HTML5, CSS3 y JavaScript\n• Adquirí habilidades sociales esenciales para entornos profesionales de desarrollo de software',
+        technologies: [
+          'HTML5',
+          'CSS3',
+          'JavaScript',
+          'Java',
+          'MySQL',
+          'Oracle Database',
+          'Android Studio',
+          'SQL',
+          'Principios SOLID',
+          'Desarrollo Full Stack',
+          'Algoritmos',
+          'Programación Orientada a Objetos',
         ],
       },
     },

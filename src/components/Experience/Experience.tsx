@@ -27,6 +27,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
         return '🚀';
       case 'internship':
         return '🎓';
+      case 'education':
+        return '📚';
       default:
         return '📌';
     }
@@ -42,6 +44,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
         return 'from-purple-500 to-pink-500 border-purple-500/30';
       case 'internship':
         return 'from-orange-500 to-yellow-500 border-orange-500/30';
+      case 'education':
+        return 'from-indigo-500 to-blue-500 border-indigo-500/30';
       default:
         return 'from-gray-500 to-slate-500 border-gray-500/30';
     }

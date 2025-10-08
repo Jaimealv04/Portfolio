@@ -14,6 +14,6 @@ export interface Experience {
     en: ExperienceContent;
     es: ExperienceContent;
   };
-  type: 'work' | 'freelance' | 'internship';
+  type: 'work' | 'freelance' | 'internship' | 'education';
   latest?: boolean;
 }
