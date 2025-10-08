@@ -21,7 +21,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="group relative glass-card rounded-2xl overflow-hidden shadow-modern hover:shadow-modern-lg transition-all duration-300 cursor-pointer border border-white/10 hover:border-white/20"
+        className="group relative glass-card rounded-2xl overflow-hidden shadow-modern hover:shadow-modern-lg transition-all duration-300 cursor-pointer border border-white/10 hover:border-white/20 h-[500px] flex flex-col"
         whileHover={{ y: -5 }}
         onClick={() => setShowDetails(true)}
       >
@@ -68,7 +68,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         </div>
 
         {/* Content */}
-        <div className="relative p-6">
+        <div className="relative p-6 flex-1 flex flex-col">
           <motion.h3
             className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300"
             initial={{ opacity: 0, y: 10 }}
@@ -79,7 +79,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           </motion.h3>
 
           <motion.p
-            className="text-muted-foreground mb-4 line-clamp-3 leading-relaxed"
+            className="text-muted-foreground mb-4 flex-1 leading-relaxed text-sm line-clamp-4"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -89,25 +89,25 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
           {/* Technology Pills */}
           <motion.div
-            className="flex flex-wrap gap-2 mb-6"
+            className="flex flex-wrap gap-2 mb-4"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            {project.technologies.slice(0, 4).map((tech, index) => (
+            {project.technologies.slice(0, 3).map((tech, index) => (
               <motion.span
                 key={tech}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors duration-200"
+                className="px-2 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors duration-200"
               >
                 {tech}
               </motion.span>
             ))}
-            {project.technologies.length > 4 && (
-              <span className="px-3 py-1 text-xs font-medium rounded-full bg-muted/50 text-muted-foreground border border-muted/30">
-                +{project.technologies.length - 4}
+            {project.technologies.length > 3 && (
+              <span className="px-2 py-1 text-xs font-medium rounded-full bg-muted/50 text-muted-foreground border border-muted/30">
+                +{project.technologies.length - 3}
               </span>
             )}
           </motion.div>
@@ -117,7 +117,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="flex items-center text-primary hover:text-primary/80 font-medium transition-colors duration-300 group-hover:translate-x-1"
+            className="flex items-center text-primary hover:text-primary/80 font-medium transition-colors duration-300 group-hover:translate-x-1 mt-auto"
           >
             <span>{t.projects.viewDetails}</span>
             <motion.span
