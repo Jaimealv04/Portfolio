@@ -37,7 +37,6 @@ export const projects: Project[] = [
     ],
     imageUrl: '/Streakfindercapture.png',
     projectUrl: 'https://streakfinder.com',
-    githubUrl: 'https://github.com/yourusername/streakfinder',
   },
   {
     id: '2',

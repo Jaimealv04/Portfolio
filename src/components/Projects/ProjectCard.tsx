@@ -245,7 +245,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     className="mb-8"
                   >
                     <h3 className="text-xl font-semibold mb-4 text-foreground flex items-center">
-                      <span className="mr-2">🛠️</span>
                       {t.projects.technologiesUsed}
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -280,7 +279,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         rel="noopener noreferrer"
                         className="flex-1 btn-primary text-center py-4 rounded-xl font-semibold text-lg flex items-center justify-center space-x-2"
                       >
-                        <span>🌐</span>
                         <span>{t.projects.visitProject}</span>
                       </motion.a>
                     )}
@@ -293,7 +291,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         rel="noopener noreferrer"
                         className="flex-1 btn-secondary text-center py-4 rounded-xl font-semibold text-lg flex items-center justify-center space-x-2"
                       >
-                        <span>📂</span>
                         <span>{t.projects.viewCode}</span>
                       </motion.a>
                     )}
