@@ -118,9 +118,22 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                 transition={{ duration: 0.3 }}
                 className="mb-4"
               >
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  {content.fullDescription}
-                </p>
+                <div className="text-muted-foreground leading-relaxed text-sm">
+                  {content.fullDescription.split('\n').map((point, index) => (
+                    <div key={index} className="mb-2 flex items-start">
+                      {point.trim().startsWith('•') ? (
+                        <>
+                          <span className="text-primary mr-2 mt-0.5 flex-shrink-0">
+                            •
+                          </span>
+                          <span>{point.replace('•', '').trim()}</span>
+                        </>
+                      ) : (
+                        <span>{point}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
