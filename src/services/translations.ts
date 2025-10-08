@@ -48,6 +48,10 @@ export const en: Translations = {
   floatingActions: {
     downloadResume: 'Download Resume',
     sendEmail: 'Send Email',
+    tooltip: {
+      title: 'Quick Actions',
+      subtitle: 'CV • LinkedIn • Contact',
+    },
   },
   certification: {
     title: 'Professional Certification',
@@ -117,6 +121,10 @@ export const es: Translations = {
   floatingActions: {
     downloadResume: 'Descargar CV',
     sendEmail: 'Enviar Email',
+    tooltip: {
+      title: 'Acciones Rápidas',
+      subtitle: 'CV • LinkedIn • Contacto',
+    },
   },
   certification: {
     title: 'Certificación Profesional',

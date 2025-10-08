@@ -1,9 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { i18n } from '../../services/i18n';
 
 export const FloatingActions = () => {
+  const { language } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(false);
   const [showCVOptions, setShowCVOptions] = useState(false);
+  const [showInitialTooltip, setShowInitialTooltip] = useState(true);
+
+  const t = i18n.getTranslations();
+
+  // Actualizar traducciones cuando cambie el idioma
+  useEffect(() => {
+    i18n.setLanguage(language);
+  }, [language]);
+
+  // Mostrar tooltip inicial por 5 segundos
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowInitialTooltip(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Ocultar tooltip inicial cuando se expanda el menú
+  useEffect(() => {
+    if (isExpanded) {
+      setShowInitialTooltip(false);
+    }
+  }, [isExpanded]);
 
   const handleDownloadCV = (language: 'es' | 'en') => {
     const link = document.createElement('a');
@@ -177,35 +204,58 @@ export const FloatingActions = () => {
       </AnimatePresence>
 
       {/* Main Toggle Button */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={toggleExpanded}
-        className={`p-4 rounded-full shadow-modern-lg transition-all duration-300 ${
-          isExpanded
-            ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white'
-            : 'bg-gradient-to-r from-primary to-secondary text-white'
-        }`}
-      >
-        <motion.div
-          animate={{ rotate: isExpanded ? 45 : 0 }}
-          transition={{ duration: 0.3, type: 'spring' }}
+      <div className="relative">
+        {/* Tooltip inicial */}
+        <AnimatePresence>
+          {showInitialTooltip && !isExpanded && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, x: 10 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.8, x: 10 }}
+              transition={{ duration: 0.3, type: 'spring' }}
+              className="absolute right-full mr-4 top-1/2 -translate-y-1/2 px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm rounded-lg shadow-lg pointer-events-none whitespace-nowrap"
+            >
+              <div className="flex flex-col gap-1">
+                <span className="font-semibold">{t.floatingActions.tooltip.title}</span>
+                <span className="text-xs opacity-90">
+                  {t.floatingActions.tooltip.subtitle}
+                </span>
+              </div>
+              <div className="absolute left-full top-1/2 -translate-y-1/2 border-[6px] border-transparent border-l-purple-600"></div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={toggleExpanded}
+          className={`p-4 rounded-full shadow-modern-lg transition-all duration-300 ${
+            isExpanded
+              ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white'
+              : 'bg-gradient-to-r from-primary to-secondary text-white'
+          }`}
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+          <motion.div
+            animate={{ rotate: isExpanded ? 45 : 0 }}
+            transition={{ duration: 0.3, type: 'spring' }}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2.5}
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
-        </motion.div>
-      </motion.button>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              />
+            </svg>
+          </motion.div>
+        </motion.button>
+      </div>
     </div>
   );
 };

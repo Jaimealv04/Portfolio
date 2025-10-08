@@ -45,6 +45,10 @@ export interface Translations {
   floatingActions: {
     downloadResume: string;
     sendEmail: string;
+    tooltip: {
+      title: string;
+      subtitle: string;
+    };
   };
   certification: {
     title: string;
