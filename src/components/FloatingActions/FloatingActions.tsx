@@ -216,7 +216,9 @@ export const FloatingActions = () => {
               className="absolute right-full mr-4 top-1/2 -translate-y-1/2 px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm rounded-lg shadow-lg pointer-events-none whitespace-nowrap"
             >
               <div className="flex flex-col gap-1">
-                <span className="font-semibold">{t.floatingActions.tooltip.title}</span>
+                <span className="font-semibold">
+                  {t.floatingActions.tooltip.title}
+                </span>
                 <span className="text-xs opacity-90">
                   {t.floatingActions.tooltip.subtitle}
                 </span>
