@@ -14,6 +14,7 @@ export const Navigation = () => {
   const menuItems = [
     { id: 'header', label: t.navigation.home },
     { id: 'about', label: t.navigation.about },
+    { id: 'experience', label: t.navigation.experience },
     { id: 'techstack', label: t.navigation.techStack },
     { id: 'projects', label: t.navigation.projects },
   ];
@@ -30,7 +31,13 @@ export const Navigation = () => {
       setScrollProgress(scrollPercent);
 
       // Detectar sección activa
-      const sections = ['header', 'about', 'techstack', 'projects'];
+      const sections = [
+        'header',
+        'about',
+        'experience',
+        'techstack',
+        'projects',
+      ];
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {

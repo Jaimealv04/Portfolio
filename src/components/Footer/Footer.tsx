@@ -12,9 +12,7 @@ export const Footer = () => {
       className="w-full border-t border-border mt-20 py-8"
     >
       <div className="max-w-6xl mx-auto px-4 text-center">
-        <p className="text-muted-foreground">
-          {t.footer.copyright} - {t.footer.builtWith}
-        </p>
+        <p className="text-muted-foreground">{t.footer.copyright}</p>
       </div>
     </motion.footer>
   );

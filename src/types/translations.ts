@@ -2,6 +2,7 @@ export interface Translations {
   navigation: {
     home: string;
     about: string;
+    experience: string;
     techStack: string;
     projects: string;
   };
@@ -15,7 +16,7 @@ export interface Translations {
     stats: {
       experience: string;
       projects: string;
-      technologies: string;
+      learning: string;
     };
   };
   projects: {
@@ -49,6 +50,10 @@ export interface Translations {
     description: string;
     certificationTitle: string;
     certificationProvider: string;
+  };
+  experience: {
+    title: string;
+    description: string;
   };
   footer: {
     copyright: string;

@@ -4,6 +4,7 @@ export const en: Translations = {
   navigation: {
     home: 'Home',
     about: 'About',
+    experience: 'Experience',
     techStack: 'Tech Stack',
     projects: 'Projects',
   },
@@ -18,7 +19,7 @@ export const en: Translations = {
     stats: {
       experience: 'Years Experience',
       projects: 'Projects Delivered',
-      technologies: 'Technologies Mastered',
+      learning: 'Continuous Learning',
     },
   },
   projects: {
@@ -54,8 +55,13 @@ export const en: Translations = {
     certificationTitle: 'ASP.NET Core Developer',
     certificationProvider: 'CampusMVP',
   },
+  experience: {
+    title: 'Experience',
+    description:
+      'My professional journey in software development and technology',
+  },
   footer: {
-    copyright: '© 2024 My Portfolio',
+    copyright: '2025 Jaime Álvarez De Neyra all rights reserved',
     builtWith: 'Built with ❤️ using React & Framer Motion',
   },
 };
@@ -64,6 +70,7 @@ export const es: Translations = {
   navigation: {
     home: 'Inicio',
     about: 'Sobre Mí',
+    experience: 'Experiencia',
     techStack: 'Tecnologías',
     projects: 'Proyectos',
   },
@@ -78,7 +85,7 @@ export const es: Translations = {
     stats: {
       experience: 'Años de Experiencia',
       projects: 'Proyectos Entregados',
-      technologies: 'Tecnologías Dominadas',
+      learning: 'Aprendizaje Continuo',
     },
   },
   projects: {
@@ -114,8 +121,13 @@ export const es: Translations = {
     certificationTitle: 'Desarrollador ASP.NET Core',
     certificationProvider: 'CampusMVP',
   },
+  experience: {
+    title: 'Experiencia',
+    description:
+      'Mi trayectoria profesional en desarrollo de software y tecnología',
+  },
   footer: {
-    copyright: '© 2024 Mi Portafolio',
-    builtWith: 'Construido con ❤️ usando React & Framer Motion',
+    copyright: '2025 Jaime Álvarez De Neyra todos los derechos reservados',
+    builtWith: 'Built with ❤️ using React & Framer Motion',
   },
 };

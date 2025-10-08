@@ -43,58 +43,27 @@ export const TechStack = () => {
   ];
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="w-full max-w-7xl mx-auto py-16 mb-16 px-4"
-    >
+    <section className="w-full max-w-7xl mx-auto py-16 mb-16 px-4">
       {/* Header */}
       <div className="text-center mb-16">
-        <motion.h2
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="font-display text-4xl md:text-5xl font-bold mb-4 text-gradient-primary"
-        >
+        <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-gradient-primary">
           {t.techStack.title}
-        </motion.h2>
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-lg text-muted-foreground max-w-2xl mx-auto"
-        >
+        </h2>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           {t.techStack.description}
-        </motion.p>
+        </p>
       </div>
 
       {/* Tecnologías por categorías */}
       <div className="space-y-12">
-        {categoryOrder.map((categoryKey, categoryIndex) => {
+        {categoryOrder.map((categoryKey) => {
           const categoryTechs = groupedTechnologies[categoryKey];
           if (!categoryTechs || categoryTechs.length === 0) return null;
 
           return (
-            <motion.div
-              key={categoryKey}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
-              className="relative"
-            >
+            <div key={categoryKey} className="relative">
               {/* Título de categoría */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: categoryIndex * 0.1 + 0.2 }}
-                className="mb-6"
-              >
+              <div className="mb-6">
                 <h3 className="text-xl md:text-2xl font-bold mb-2 text-foreground">
                   {
                     t.techStack.categories[
@@ -103,20 +72,13 @@ export const TechStack = () => {
                   }
                 </h3>
                 <div className="h-1 w-20 rounded-full bg-gradient-to-r from-primary to-secondary"></div>
-              </motion.div>
+              </div>
 
               {/* Grid de tecnologías */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-                {categoryTechs.map((tech, techIndex) => (
+                {categoryTechs.map((tech) => (
                   <motion.div
                     key={tech.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      delay: categoryIndex * 0.1 + techIndex * 0.05 + 0.3,
-                      duration: 0.4,
-                    }}
                     whileHover={{
                       scale: 1.05,
                       y: -5,
@@ -126,20 +88,9 @@ export const TechStack = () => {
                       categoryColors[categoryKey as keyof typeof categoryColors]
                     } hover:shadow-modern-lg transition-all duration-300 cursor-pointer group relative h-28`}
                   >
-                    <motion.div
-                      className="text-2xl filter drop-shadow-sm"
-                      animate={{
-                        rotate: [0, 5, -5, 0],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        repeatDelay: 2,
-                        delay: techIndex * 0.1,
-                      }}
-                    >
+                    <div className="text-2xl filter drop-shadow-sm">
                       {tech.icon}
-                    </motion.div>
+                    </div>
                     <div className="text-center">
                       <span className="text-xs font-semibold group-hover:text-foreground transition-colors leading-tight">
                         {tech.name}
@@ -148,10 +99,10 @@ export const TechStack = () => {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>
-    </motion.section>
+    </section>
   );
 };

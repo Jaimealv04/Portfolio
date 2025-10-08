@@ -3,6 +3,7 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import { Navigation } from './components/Navigation/Navigation';
 import { Header } from './components/Header/Header';
 import { About } from './components/About/About';
+import { Experience } from './components/Experience/Experience';
 import { Projects } from './components/Projects/Projects';
 import { TechStack } from './components/TechStack/TechStack';
 import { Certification } from './components/Certification/Certification';
@@ -44,6 +45,13 @@ function App() {
 
             <section id="about" className="w-full flex justify-center py-12">
               <About />
+            </section>
+
+            <section
+              id="experience"
+              className="w-full flex justify-center py-12"
+            >
+              <Experience />
             </section>
 
             <section

@@ -56,7 +56,7 @@ export const About = () => {
             </div>
             <div className="text-center p-6 rounded-xl glass border border-border/50 hover:shadow-modern-lg transition-all duration-300">
               <div className="text-3xl md:text-4xl font-bold text-gradient-secondary mb-3">
-                15+
+                10+
               </div>
               <div className="text-sm md:text-base text-muted-foreground font-semibold">
                 {t.about.stats.projects}
@@ -64,10 +64,10 @@ export const About = () => {
             </div>
             <div className="text-center p-6 rounded-xl glass border border-border/50 hover:shadow-modern-lg transition-all duration-300">
               <div className="text-3xl md:text-4xl font-bold text-gradient-accent mb-3">
-                20+
+                ∞
               </div>
               <div className="text-sm md:text-base text-muted-foreground font-semibold">
-                {t.about.stats.technologies}
+                {t.about.stats.learning}
               </div>
             </div>
           </motion.div>
