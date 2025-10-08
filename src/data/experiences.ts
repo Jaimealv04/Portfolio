@@ -132,9 +132,9 @@ export const experiences: Experience[] = [
         period: '2023',
         location: 'Madrid, Spain',
         brief:
-          '6-month internship focused on developing integration solutions with Outlook and Azure for automated email processing and information extraction.',
+          '4-month internship focused on developing integration solutions with Outlook and Azure for automated email processing and information extraction.',
         fullDescription:
-          'This internship lasted 6 months. As final project, I developed an integration module with Outlook and Azure to access client emails and extract information from sent files. Processed them with OpenAI API and used Named Entity Recognition (NER) to extract important information. This solution automated email processing workflows and improved data extraction accuracy for business processes.',
+          'This internship lasted 4 months. As final project, I developed an integration module with Outlook and Azure to access client emails and extract information from sent files. Processed them with OpenAI API and used Named Entity Recognition (NER) to extract important information. This solution automated email processing workflows and improved data extraction accuracy for business processes.',
         technologies: [
           'Microsoft Azure',
           'Outlook API',

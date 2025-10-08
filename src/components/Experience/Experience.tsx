@@ -169,7 +169,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 };
 
 export const Experience: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   // Sort experiences: latest first, then by id (descending)
   const sortedExperiences = [...experiences].sort((a, b) => {
