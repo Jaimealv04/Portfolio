@@ -71,7 +71,7 @@ export const experiences: Experience[] = [
     },
   },
   {
-    id: '4',
+    id: '3',
     type: 'internship',
     content: {
       en: {
@@ -117,7 +117,7 @@ export const experiences: Experience[] = [
     },
   },
   {
-    id: '2',
+    id: '4',
     type: 'work',
     content: {
       en: {
