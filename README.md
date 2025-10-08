@@ -1,3 +1,4 @@
+````markdown
 # Portfolio
 
 This is a modern personal portfolio built with Vite, React, TypeScript, Framer Motion, and Tailwind CSS. It showcases all my personal knowledge and ongoing career with a beautiful, responsive design.
@@ -10,14 +11,17 @@ This is a modern personal portfolio built with Vite, React, TypeScript, Framer M
 - 🌙 **Dark/Light Mode** - Theme toggle with persistent preferences
 - 📱 **Fully Responsive** - Mobile-first design approach
 - 🎯 **TypeScript** - Type-safe development
-- 💼 **Projects Showcase** - Interactive project cards with detailed modals
+- 🧭 **Sticky Navigation** - Smart navigation with scroll-activated background and active section highlighting
+- � **Scroll Progress** - Visual scroll progress indicator
+- �💼 **Projects Showcase** - Interactive project cards with detailed modals
 - 🛠️ **Tech Stack Display** - Animated technology showcase
-- 📥 **Quick Actions** - Floating buttons for resume download and email
+- 📥 **Quick Actions** - Collapsible floating buttons for resume download and email
 - 🎨 **Modern UI** - Built with Tailwind CSS and custom design system
 
 ## 🚀 Tech Stack
 
 ### Core
+
 - **Vite** - Lightning fast build tool
 - **React 18** - Modern UI library with hooks
 - **TypeScript** - Type-safe JavaScript
@@ -25,6 +29,7 @@ This is a modern personal portfolio built with Vite, React, TypeScript, Framer M
 - **Framer Motion** - Production-ready animation library
 
 ### Architecture
+
 - **Context API** - State management for theme and language
 - **Modular Components** - Clean, reusable component structure
 - **Custom Hooks** - Reusable logic with React hooks
@@ -35,14 +40,15 @@ This is a modern personal portfolio built with Vite, React, TypeScript, Framer M
 ```
 src/
 ├── components/          # React components
+│   ├── Navigation/     # Sticky navigation with smart background
 │   ├── Header/         # Header with title and subtitle
 │   ├── About/          # About section
 │   ├── Skills/         # Skills grid with animations
 │   ├── Projects/       # Project cards and modals
 │   ├── TechStack/      # Animated technology stack
 │   ├── Footer/         # Footer component
-│   ├── ThemeToggle/    # Dark/Light mode toggle
-│   └── FloatingActions/ # Floating action buttons
+│   ├── ThemeToggle/    # Dark/Light mode toggle (now in Navigation)
+│   └── FloatingActions/ # Collapsible floating action buttons
 ├── contexts/           # React contexts
 │   ├── ThemeContext.tsx     # Theme management
 │   └── LanguageContext.tsx  # Language management
@@ -58,16 +64,36 @@ src/
 └── utils/             # Utility functions
 ```
 
+## 🧭 Navigation Features
+
+### Sticky Navigation Bar
+
+- **Smart Background**: Applies background blur and shadow on scroll
+- **Active Section Highlighting**: Automatically highlights current section
+- **Smooth Scrolling**: Animated scroll to sections with proper offset
+- **Scroll Progress**: Visual indicator showing page progress
+- **Mobile Menu**: Slide-out navigation for mobile devices
+
+### Navigation Controls
+
+- **Language Toggle**: Switch between English and Spanish (moved to navbar)
+- **Theme Toggle**: Dark/Light mode toggle (moved to navbar)
+- **Logo**: Click to scroll to top
+- **Section Links**: Direct navigation to any page section
+
 ## 🌐 Internationalization (i18n)
 
 The portfolio supports both English and Spanish with a simple toggle button. Translations are managed through:
+
 - **Service Layer**: Singleton service for translation management
 - **Context API**: Global state for current language
 - **Local Storage**: Persistent language preference
+- **Navigation**: Includes navigation menu translations
 
 ## 🎨 Theming
 
 Custom theme system with:
+
 - Light and dark mode support
 - CSS custom properties for colors
 - Tailwind CSS integration
@@ -108,13 +134,26 @@ npm run lint
 
 ## 🎯 Key Components
 
-### Floating Actions
-- **Language Toggle**: Switch between English and Spanish
-- **Download Resume**: One-click resume download
-- **Send Email**: Quick contact via email
+### Navigation
+
+- **Sticky Behavior**: Fixed position with scroll-triggered styling
+- **Active Section Detection**: Automatically highlights current section
+- **Smooth Scrolling**: Animated navigation between sections
+- **Mobile Responsive**: Slide-out menu for smaller screens
+- **Progress Indicator**: Visual scroll progress bar
+- **Integrated Controls**: Theme and language toggles in navbar
+
+### Floating Actions (Enhanced)
+
+- **Collapsible Design**: Click to expand/collapse action buttons
+- **Resume Download**: One-click resume download
+- **Email Contact**: Quick contact via email
+- **Animated Expansion**: Smooth reveal animations with staggered timing
 - **Tooltips**: Helpful tooltips on hover
+- **Click to Close**: Actions close the menu automatically
 
 ### Projects Section
+
 - Grid layout with project cards
 - Click to view detailed project information
 - Full project briefs with technologies used
@@ -122,6 +161,7 @@ npm run lint
 - Smooth modal animations
 
 ### Technology Stack
+
 - Animated technology cards
 - Organized by category (Frontend, Backend, Tools, Database)
 - Interactive hover effects
@@ -129,7 +169,28 @@ npm run lint
 
 ## 🔧 Customization
 
+### Adding Sections to Navigation
+
+Edit the `menuItems` array in `src/components/Navigation/Navigation.tsx`:
+
+```typescript
+const menuItems = [
+  { id: 'section-id', label: t.navigation.sectionLabel },
+  // Add your sections here
+];
+```
+
+Remember to add corresponding translations in `src/services/translations.ts`:
+
+```typescript
+navigation: {
+  sectionLabel: 'Section Name',
+  // Add your translations here
+}
+```
+
 ### Adding Projects
+
 Edit `src/data/projects.ts` to add your own projects:
 
 ```typescript
@@ -145,6 +206,7 @@ Edit `src/data/projects.ts` to add your own projects:
 ```
 
 ### Adding Technologies
+
 Edit `src/data/technologies.ts` to customize your tech stack:
 
 ```typescript
@@ -156,19 +218,39 @@ Edit `src/data/technologies.ts` to customize your tech stack:
 ```
 
 ### Translations
+
 Add or modify translations in `src/services/translations.ts` for both English and Spanish.
+
+## 🎛️ User Experience Features
+
+### Smart Navigation
+
+- **Section Anchoring**: Each section has a unique ID for direct linking
+- **Scroll Offset**: Proper spacing to account for sticky navigation
+- **Active State**: Visual indication of current section
+- **Mobile Menu**: Touch-friendly slide-out menu
+
+### Responsive Interactions
+
+- **Hover Effects**: Subtle animations on interactive elements
+- **Click Feedback**: Visual feedback for all clickable items
+- **Smooth Transitions**: Consistent animation timing throughout
+- **Accessibility**: Proper ARIA labels and keyboard navigation
 
 ## 📝 Best Practices
 
 - ✅ Modular component structure
 - ✅ TypeScript for type safety
 - ✅ Responsive design with mobile-first approach
-- ✅ Accessible UI with ARIA labels
+- ✅ Accessible UI with ARIA labels and keyboard navigation
 - ✅ Performance optimized with Vite
 - ✅ Clean code with ESLint
-- ✅ Semantic HTML
+- ✅ Semantic HTML with proper section anchors
 - ✅ SEO-friendly structure
+- ✅ Smooth scrolling and proper navigation offsets
+- ✅ Mobile-optimized navigation
 
 ## 📄 License
 
 This project is open source and available under the MIT License.
+````
