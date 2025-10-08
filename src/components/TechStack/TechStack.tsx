@@ -11,6 +11,12 @@ const categoryColors = {
     'from-orange-500/10 to-red-500/10 border-orange-500/20 text-orange-700 dark:text-orange-400',
   cloud:
     'from-purple-500/10 to-pink-500/10 border-purple-500/20 text-purple-700 dark:text-purple-400',
+  devops:
+    'from-yellow-500/10 to-amber-500/10 border-yellow-500/20 text-yellow-700 dark:text-yellow-400',
+  security:
+    'from-red-500/10 to-rose-500/10 border-red-500/20 text-red-700 dark:text-red-400',
+  'data-engineering':
+    'from-emerald-500/10 to-green-500/10 border-emerald-500/20 text-emerald-700 dark:text-emerald-400',
   ai: 'from-indigo-500/10 to-violet-500/10 border-indigo-500/20 text-indigo-700 dark:text-indigo-400',
   architecture:
     'from-gray-500/10 to-slate-500/10 border-gray-500/20 text-gray-700 dark:text-gray-400',
@@ -37,6 +43,9 @@ export const TechStack = () => {
     'frontend',
     'database',
     'cloud',
+    'devops',
+    'security',
+    'data-engineering',
     'ai',
     'architecture',
     'methodologies',

@@ -34,6 +34,9 @@ export interface Translations {
       frontend: string;
       database: string;
       cloud: string;
+      devops: string;
+      security: string;
+      'data-engineering': string;
       ai: string;
       architecture: string;
       methodologies: string;
