@@ -20,7 +20,7 @@ export const Header = () => {
         ></div>
         <div
           className="absolute bottom-1/4 left-1/2 w-72 h-72 gradient-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"
-          style={{ animationDelay: '4s' }}
+          style={{ animationDelay: '4s' }} 
         ></div>
       </div>
 
