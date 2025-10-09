@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { experiences } from '../../data/experiences';
 import type { Experience as ExperienceType } from '../../types/experience';
@@ -62,15 +61,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
       <div
         className={`relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r ${getExperienceColor(
           experience.type
-        )} border-2 flex items-center justify-center text-lg shadow-lg group-hover:scale-110 transition-transform duration-300`}
+        )} border-2 flex items-center justify-center text-lg shadow-lg transition-transform duration-300`}
       >
-        {experience.latest && (
-          <motion.div
-            className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-emerald-400 opacity-30"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        )}
         <span className="relative z-10">
           {getExperienceIcon(experience.type)}
         </span>
@@ -78,13 +70,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 
       {/* Content */}
       <div className="ml-6 flex-1 pb-8">
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="glass-card p-6 rounded-2xl border border-border/50 shadow-modern hover:shadow-modern-lg transition-all duration-300 group-hover:border-primary/20"
-        >
+        <div className="glass-card p-6 rounded-2xl border border-border/50 shadow-modern hover:shadow-modern-lg transition-all duration-300 group-hover:border-primary/20">
           <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
             <div className="flex-1 min-w-0">
               <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
@@ -113,53 +99,39 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
             {content.brief}
           </p>
 
-          <AnimatePresence>
-            {isExpanded && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="mb-4"
-              >
-                <div className="text-muted-foreground leading-relaxed text-sm">
-                  {content.fullDescription.split('\n').map((point, index) => (
-                    <div key={index} className="mb-2 flex items-start">
-                      {point.trim().startsWith('•') ? (
-                        <>
-                          <span className="text-primary mr-2 mt-0.5 flex-shrink-0">
-                            •
-                          </span>
-                          <span>{point.replace('•', '').trim()}</span>
-                        </>
-                      ) : (
-                        <span>{point}</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {isExpanded && (
+            <div className="mb-4">
+              <div className="text-muted-foreground leading-relaxed text-sm">
+                {content.fullDescription.split('\n').map((point, index) => (
+                  <div key={index} className="mb-2 flex items-start">
+                    {point.trim().startsWith('•') ? (
+                      <>
+                        <span className="text-primary mr-2 mt-0.5 flex-shrink-0">
+                          •
+                        </span>
+                        <span>{point.replace('•', '').trim()}</span>
+                      </>
+                    ) : (
+                      <span>{point}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="flex flex-wrap gap-2 mb-4">
-            {content.technologies.map((tech, index) => (
-              <motion.span
+            {content.technologies.map((tech) => (
+              <span
                 key={tech}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
               >
                 {tech}
-              </motion.span>
+              </span>
             ))}
           </div>
 
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+          <button
             onClick={() => setIsExpanded(!isExpanded)}
             className="flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
           >
@@ -172,14 +144,9 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                 ? 'Ver más'
                 : 'Show more'}
             </span>
-            <motion.span
-              animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              ⌄
-            </motion.span>
-          </motion.button>
-        </motion.div>
+            <span>⌄</span>
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -197,20 +164,14 @@ export const Experience: React.FC = () => {
 
   return (
     <section className="w-full max-w-4xl mx-auto px-4 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-16"
-      >
+      <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-display font-black text-gradient-primary mb-6">
           {t.experience.title}
         </h2>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           {t.experience.description}
         </p>
-      </motion.div>
+      </div>
 
       <div className="relative">
         {sortedExperiences.map((experience, index) => (
