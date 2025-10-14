@@ -104,7 +104,7 @@ const updateCanonicalURL = (language: string) => {
     document.head.appendChild(canonical);
   }
 
-  const baseURL = 'https://jaimealvarez.dev';
+  const baseURL = 'https://www.jaimealvarezdeneyra.com';
   canonical.href = language === 'en' ? `${baseURL}/en` : baseURL;
 };
 

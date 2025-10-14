@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jaimealvarez.dev/</loc>
+    <loc>https://www.jaimealvarezdeneyra.com/</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://jaimealvarez.dev/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://jaimealvarez.dev/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.jaimealvarezdeneyra.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.jaimealvarezdeneyra.com/en" />
   </url>
   <url>
-    <loc>https://jaimealvarez.dev/en</loc>
+    <loc>https://www.jaimealvarezdeneyra.com/en</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://jaimealvarez.dev/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://jaimealvarez.dev/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.jaimealvarezdeneyra.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.jaimealvarezdeneyra.com/en" />
   </url>
 </urlset>

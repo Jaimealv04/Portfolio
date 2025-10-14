@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://jaimealvarez.dev/sitemap.xml
+Sitemap: https://www.jaimealvarezdeneyra.com/sitemap.xml
 
 # Specific rules for different crawlers
 User-agent: Googlebot
