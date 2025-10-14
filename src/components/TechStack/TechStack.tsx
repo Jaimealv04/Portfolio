@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { technologies } from '../../data/technologies';
 
@@ -26,6 +26,7 @@ const categoryColors = {
 
 export const TechStack = () => {
   const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState<string>('backend');
 
   // Agrupar tecnologías por categoría
   const groupedTechnologies = technologies.reduce((groups, tech) => {
@@ -51,10 +52,16 @@ export const TechStack = () => {
     'methodologies',
   ];
 
+  // Filtrar solo las categorías que tienen tecnologías
+  const availableCategories = categoryOrder.filter(
+    (category) =>
+      groupedTechnologies[category] && groupedTechnologies[category].length > 0
+  );
+
   return (
     <section className="w-full max-w-7xl mx-auto py-16 mb-16 px-4">
       {/* Header */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-12">
         <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-gradient-primary">
           {t.techStack.title}
         </h2>
@@ -63,54 +70,84 @@ export const TechStack = () => {
         </p>
       </div>
 
-      {/* Tecnologías por categorías */}
-      <div className="space-y-12">
-        {categoryOrder.map((categoryKey) => {
-          const categoryTechs = groupedTechnologies[categoryKey];
-          if (!categoryTechs || categoryTechs.length === 0) return null;
+      {/* Tabs Navigation */}
+      <div className="mb-8">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+          {availableCategories.map((categoryKey) => {
+            const isActive = activeCategory === categoryKey;
+            return (
+              <button
+                key={categoryKey}
+                onClick={() => setActiveCategory(categoryKey)}
+                className={`relative px-4 py-2 md:px-6 md:py-3 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 border hover:scale-105 ${
+                  isActive
+                    ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25'
+                    : 'bg-background/50 backdrop-blur-sm text-muted-foreground border-border hover:border-primary/50 hover:text-foreground'
+                }`}
+              >
+                {
+                  t.techStack.categories[
+                    categoryKey as keyof typeof t.techStack.categories
+                  ]
+                }
+                {isActive && (
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary to-secondary opacity-20" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
-          return (
-            <div key={categoryKey} className="relative">
-              {/* Título de categoría */}
-              <div className="mb-6">
-                <h3 className="text-xl md:text-2xl font-bold mb-2 text-foreground">
-                  {
-                    t.techStack.categories[
-                      categoryKey as keyof typeof t.techStack.categories
-                    ]
-                  }
-                </h3>
-                <div className="h-1 w-20 rounded-full bg-gradient-to-r from-primary to-secondary"></div>
-              </div>
+      {/* Content Area */}
+      <div className="relative min-h-[400px]">
+        <div className="w-full">
+          {/* Category Title */}
+          <div className="mb-8 text-center">
+            <h3 className="text-2xl md:text-3xl font-bold mb-2 text-foreground">
+              {
+                t.techStack.categories[
+                  activeCategory as keyof typeof t.techStack.categories
+                ]
+              }
+            </h3>
+            <div className="h-1 w-24 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary"></div>
+          </div>
 
-              {/* Grid de tecnologías */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-                {categoryTechs.map((tech) => (
-                  <motion.div
-                    key={tech.name}
-                    whileHover={{
-                      scale: 1.05,
-                      y: -5,
-                      transition: { duration: 0.2 },
-                    }}
-                    className={`glass-card rounded-xl p-4 flex flex-col items-center justify-center gap-3 border ${
-                      categoryColors[categoryKey as keyof typeof categoryColors]
-                    } hover:shadow-modern-lg transition-all duration-300 cursor-pointer group relative h-28`}
-                  >
-                    <div className="text-2xl filter drop-shadow-sm">
-                      {tech.icon}
-                    </div>
-                    <div className="text-center">
-                      <span className="text-xs font-semibold group-hover:text-foreground transition-colors leading-tight">
-                        {tech.name}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
+          {/* Technologies Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+            {groupedTechnologies[activeCategory]?.map((tech) => (
+              <div
+                key={tech.name}
+                className={`glass-card rounded-xl p-4 md:p-6 flex flex-col items-center justify-center gap-3 border ${
+                  categoryColors[activeCategory as keyof typeof categoryColors]
+                } hover:shadow-modern-lg transition-all duration-300 cursor-pointer group relative h-28 md:h-32 hover:scale-105 hover:-translate-y-1`}
+              >
+                <div className="text-2xl md:text-3xl filter drop-shadow-sm group-hover:scale-110 transition-transform duration-200">
+                  {tech.icon}
+                </div>
+                <div className="text-center">
+                  <span className="text-xs md:text-sm font-semibold group-hover:text-foreground transition-colors leading-tight">
+                    {tech.name}
+                  </span>
+                </div>
+
+                {/* Hover effect overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
+            ))}
+          </div>
+
+          {/* Empty state */}
+          {(!groupedTechnologies[activeCategory] ||
+            groupedTechnologies[activeCategory].length === 0) && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground text-lg">
+                No hay tecnologías disponibles en esta categoría
+              </p>
             </div>
-          );
-        })}
+          )}
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { i18n } from '../../services/i18n';
 
@@ -57,6 +56,9 @@ export const FloatingActions = () => {
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
+    if (isExpanded) {
+      setShowCVOptions(false);
+    }
   };
 
   const actions = [
@@ -79,7 +81,6 @@ export const FloatingActions = () => {
       ),
       onClick: () => setShowCVOptions(!showCVOptions),
       color: 'from-blue-500 to-purple-500',
-      delay: 0.05,
       hasSubmenu: true,
     },
     {
@@ -101,7 +102,6 @@ export const FloatingActions = () => {
       ),
       onClick: handleSendEmail,
       color: 'from-green-500 to-emerald-500',
-      delay: 0.1,
     },
     {
       label: 'LinkedIn',
@@ -112,32 +112,22 @@ export const FloatingActions = () => {
       ),
       onClick: handleViewLinkedIn,
       color: 'from-blue-600 to-blue-700',
-      delay: 0.15,
     },
   ];
 
   return (
-    <div className="fixed top-1/2 right-6 -translate-y-1/2 z-50 flex flex-col gap-3">
-      {/* Action Items */}
-      <AnimatePresence>
+    <div className="fixed top-1/2 right-6 -translate-y-1/2 z-50">
+      {/* Main Toggle Button - Always visible */}
+      <div className="relative">
+        {/* Action Items - Positioned absolutely above the button */}
         {isExpanded && (
-          <div className="flex flex-col gap-3 mb-4">
-            {actions.map((action) => (
+          <div className="absolute bottom-full mb-4 right-0 flex flex-col gap-3 animate-fadeInUp">
+            {actions.map((action, index) => (
               <div key={action.label} className="relative">
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.5, y: 20 }}
-                  transition={{
-                    duration: 0.2,
-                    delay: action.delay * 0.5,
-                    type: 'spring',
-                    stiffness: 300,
-                  }}
-                  whileHover={{ scale: 1.1, x: -5 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   onClick={action.onClick}
-                  className={`group relative p-3 rounded-xl bg-gradient-to-r ${action.color} text-white shadow-modern hover:shadow-modern-lg transition-all duration-300`}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                  className={`group relative p-3 rounded-xl bg-gradient-to-r ${action.color} text-white shadow-modern hover:shadow-modern-lg transition-all duration-300 hover:scale-105 hover:-translate-x-1 animate-slideInRight`}
                 >
                   {action.icon}
 
@@ -166,81 +156,58 @@ export const FloatingActions = () => {
                       <div className="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-black/80"></div>
                     </div>
                   )}
-                </motion.button>
+                </button>
 
                 {/* Submenu para CV cuando está expandido */}
-                <AnimatePresence>
-                  {action.hasSubmenu && showCVOptions && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 10, scale: 0.8 }}
-                      animate={{ opacity: 1, x: 0, scale: 1 }}
-                      exit={{ opacity: 0, x: 10, scale: 0.8 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute right-full mr-3 top-0 flex flex-col gap-2"
+                {action.hasSubmenu && showCVOptions && (
+                  <div className="absolute right-full mr-3 top-0 flex flex-col gap-2 animate-slideInRight">
+                    <button
+                      onClick={() => handleDownloadCV('es')}
+                      className="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg shadow-lg transition-all duration-200 whitespace-nowrap hover:scale-105 hover:-translate-x-1"
                     >
-                      <motion.button
-                        whileHover={{ scale: 1.05, x: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => handleDownloadCV('es')}
-                        className="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg shadow-lg transition-all duration-200 whitespace-nowrap"
-                      >
-                        CV-ES.pdf
-                      </motion.button>
-                      <motion.button
-                        whileHover={{ scale: 1.05, x: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => handleDownloadCV('en')}
-                        className="px-3 py-2 bg-purple-500 hover:bg-purple-600 text-white text-sm rounded-lg shadow-lg transition-all duration-200 whitespace-nowrap"
-                      >
-                        CV-EN.pdf
-                      </motion.button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      CV-ES.pdf
+                    </button>
+                    <button
+                      onClick={() => handleDownloadCV('en')}
+                      className="px-3 py-2 bg-purple-500 hover:bg-purple-600 text-white text-sm rounded-lg shadow-lg transition-all duration-200 whitespace-nowrap hover:scale-105 hover:-translate-x-1"
+                    >
+                      CV-EN.pdf
+                    </button>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         )}
-      </AnimatePresence>
 
-      {/* Main Toggle Button */}
-      <div className="relative">
         {/* Tooltip inicial */}
-        <AnimatePresence>
-          {showInitialTooltip && !isExpanded && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, x: 10 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              exit={{ opacity: 0, scale: 0.8, x: 10 }}
-              transition={{ duration: 0.3, type: 'spring' }}
-              className="absolute right-full mr-4 top-1/2 -translate-y-1/2 px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm rounded-lg shadow-lg pointer-events-none whitespace-nowrap"
-            >
-              <div className="flex flex-col gap-1">
-                <span className="font-semibold">
-                  {t.floatingActions.tooltip.title}
-                </span>
-                <span className="text-xs opacity-90">
-                  {t.floatingActions.tooltip.subtitle}
-                </span>
-              </div>
-              <div className="absolute left-full top-1/2 -translate-y-1/2 border-[6px] border-transparent border-l-purple-600"></div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {showInitialTooltip && !isExpanded && (
+          <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm rounded-lg shadow-lg pointer-events-none whitespace-nowrap animate-slideInRight">
+            <div className="flex flex-col gap-1">
+              <span className="font-semibold">
+                {t.floatingActions.tooltip.title}
+              </span>
+              <span className="text-xs opacity-90">
+                {t.floatingActions.tooltip.subtitle}
+              </span>
+            </div>
+            <div className="absolute left-full top-1/2 -translate-y-1/2 border-[6px] border-transparent border-l-purple-600"></div>
+          </div>
+        )}
 
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+        {/* Main Button */}
+        <button
           onClick={toggleExpanded}
-          className={`p-4 rounded-full shadow-modern-lg transition-all duration-300 ${
+          className={`p-4 rounded-full shadow-modern-lg transition-all duration-300 hover:scale-110 active:scale-95 ${
             isExpanded
               ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white'
               : 'bg-gradient-to-r from-primary to-secondary text-white'
           }`}
         >
-          <motion.div
-            animate={{ rotate: isExpanded ? 45 : 0 }}
-            transition={{ duration: 0.3, type: 'spring' }}
+          <div
+            className={`transition-transform duration-300 ${
+              isExpanded ? 'rotate-45' : 'rotate-0'
+            }`}
           >
             <svg
               className="w-6 h-6"
@@ -255,8 +222,8 @@ export const FloatingActions = () => {
                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"
               />
             </svg>
-          </motion.div>
-        </motion.button>
+          </div>
+        </button>
       </div>
     </div>
   );
