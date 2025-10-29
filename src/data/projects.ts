@@ -38,52 +38,52 @@ export const projects: Project[] = [
     imageUrl: '/Streakfindercapture.png',
     projectUrl: 'https://streakfinder.com',
   },
+//   {
+//     id: '2',
+//     content: {
+//       en: {
+//         title: 'Semantic Image Search with AI',
+//         description:
+//           'Image search system using OpenAI CLIP and natural language processing',
+//         fullBrief:
+//           'Innovative application that allows searching for images using natural language descriptions without relying on manual tags. Uses OpenAI\'s CLIP model to link images and text in a common vector space, converting both images and descriptions into comparable embeddings. Implements semantic search through cosine similarity on the Flickr8k dataset, allowing queries like "a dog playing in the park" to find relevant images based on the semantic relationship between text and images.',
+//       },
+//       es: {
+//         title: 'Búsqueda Semántica de Imágenes con IA',
+//         description:
+//           'Sistema de búsqueda de imágenes usando CLIP de OpenAI y procesamiento de lenguaje natural',
+//         fullBrief:
+//           'Aplicación innovadora que permite buscar imágenes utilizando descripciones en lenguaje natural sin depender de etiquetas manuales. Utiliza el modelo CLIP de OpenAI para vincular imágenes y texto en un espacio vectorial común, convirtiendo tanto imágenes como descripciones en embeddings comparables. Implementa búsqueda semántica mediante similaridad de coseno sobre el dataset Flickr8k, permitiendo consultas como "un perro jugando en el parque" para encontrar imágenes relevantes basándose en la relación semántica entre texto e imágenes.',
+//       },
+//     },
+//     technologies: [
+//       'Python',
+//       'PyTorch',
+//       'CLIP',
+//       'OpenAI',
+//       'Gradio',
+//       'NumPy',
+//       'Pandas',
+//       'Docker',
+//       'Computer Vision',
+//       'NLP',
+//       'Machine Learning',
+//       'Embeddings',
+//     ],
+//     imageUrl: '/projects/semantic-search.jpg',
+//     videoIframe: `<iframe
+//   src="https://player.cloudinary.com/embed/?cloud_name=dm70hhhnm&public_id=1733743487208_bqcgg3&profile=cld-default"
+//   width="640"
+//   height="360"
+//   style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
+//   allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+//   allowfullscreen
+//   frameborder="0"
+// ></iframe>`,
+//     githubUrl: 'https://lnkd.in/d5B2MZnk',
+//   },
   {
     id: '2',
-    content: {
-      en: {
-        title: 'Semantic Image Search with AI',
-        description:
-          'Image search system using OpenAI CLIP and natural language processing',
-        fullBrief:
-          'Innovative application that allows searching for images using natural language descriptions without relying on manual tags. Uses OpenAI\'s CLIP model to link images and text in a common vector space, converting both images and descriptions into comparable embeddings. Implements semantic search through cosine similarity on the Flickr8k dataset, allowing queries like "a dog playing in the park" to find relevant images based on the semantic relationship between text and images.',
-      },
-      es: {
-        title: 'Búsqueda Semántica de Imágenes con IA',
-        description:
-          'Sistema de búsqueda de imágenes usando CLIP de OpenAI y procesamiento de lenguaje natural',
-        fullBrief:
-          'Aplicación innovadora que permite buscar imágenes utilizando descripciones en lenguaje natural sin depender de etiquetas manuales. Utiliza el modelo CLIP de OpenAI para vincular imágenes y texto en un espacio vectorial común, convirtiendo tanto imágenes como descripciones en embeddings comparables. Implementa búsqueda semántica mediante similaridad de coseno sobre el dataset Flickr8k, permitiendo consultas como "un perro jugando en el parque" para encontrar imágenes relevantes basándose en la relación semántica entre texto e imágenes.',
-      },
-    },
-    technologies: [
-      'Python',
-      'PyTorch',
-      'CLIP',
-      'OpenAI',
-      'Gradio',
-      'NumPy',
-      'Pandas',
-      'Docker',
-      'Computer Vision',
-      'NLP',
-      'Machine Learning',
-      'Embeddings',
-    ],
-    imageUrl: '/projects/semantic-search.jpg',
-    videoIframe: `<iframe
-  src="https://player.cloudinary.com/embed/?cloud_name=dm70hhhnm&public_id=1733743487208_bqcgg3&profile=cld-default"
-  width="640"
-  height="360"
-  style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
-  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-  allowfullscreen
-  frameborder="0"
-></iframe>`,
-    githubUrl: 'https://lnkd.in/d5B2MZnk',
-  },
-  {
-    id: '3',
     content: {
       en: {
         title: 'EGO HOUSE Madrid - Integral Management System',
