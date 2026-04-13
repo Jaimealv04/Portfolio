@@ -141,8 +141,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                   ? 'Ver menos'
                   : 'Show less'
                 : language === 'es'
-                ? 'Ver más'
-                : 'Show more'}
+                  ? 'Ver más'
+                  : 'Show more'}
             </span>
             <span>⌄</span>
           </button>
@@ -155,11 +155,11 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 export const Experience: React.FC = () => {
   const { t } = useLanguage();
 
-  // Sort experiences: latest first, then by id (descending)
+  // Sort experiences: latest first, then preserve array order
   const sortedExperiences = [...experiences].sort((a, b) => {
     if (a.latest && !b.latest) return -1;
     if (!a.latest && b.latest) return 1;
-    return parseInt(b.id) - parseInt(a.id);
+    return 0;
   });
 
   return (

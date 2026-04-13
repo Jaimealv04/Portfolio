@@ -81,6 +81,7 @@ export const technologies: Technology[] = [
   { name: 'LangGraph', category: 'ai', color: '#2f6f6f' },
   { name: 'RAG', category: 'ai', color: '#6c5ce7' },
   { name: 'OpenAI', category: 'ai', color: '#412991' },
+  { name: 'Agentic AI', category: 'ai', color: '#0ea5e9' },
 
   // Arquitectura
   { name: 'Microservicios', category: 'architecture', color: '#2d3748' },

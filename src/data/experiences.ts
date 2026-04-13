@@ -2,14 +2,72 @@ import { Experience } from '../types/experience';
 
 export const experiences: Experience[] = [
   {
-    id: '1',
+    id: '5',
     type: 'work',
     latest: true,
     content: {
       en: {
+        title: 'Full Stack & Gen AI Developer',
+        company: 'Novacomp',
+        period: '2025 - Present',
+        location: 'Madrid, Spain · Remote',
+        brief:
+          'Part of the development team building end-to-end solutions for various clients, combining full stack development with generative AI on AWS.',
+        fullDescription:
+          '• Development of web applications with React on the frontend and Node.js/Python on the backend\n• Design and integration of APIs and services based on Gen AI models (LLMs, assistants, automation, content generation, etc.)\n• Building and deploying solutions on AWS (Lambda, API Gateway, S3, RDS/DynamoDB, CloudWatch, etc.)\n• Implementation of best practices: testing, clean code, code review, and CI/CD\n• Working with agile methodologies, collaborating with multidisciplinary teams to deliver value continuously',
+        technologies: [
+          'React',
+          'Node.js',
+          'Python',
+          'AWS',
+          'Lambda',
+          'API Gateway',
+          'S3',
+          'DynamoDB',
+          'CloudWatch',
+          'Gen AI',
+          'LLMs',
+          'TypeScript',
+          'CI/CD',
+          'REST APIs',
+        ],
+      },
+      es: {
+        title: 'Full Stack & Gen AI Developer',
+        company: 'Novacomp',
+        period: '2025 - Actualidad',
+        location: 'Madrid, España · En remoto',
+        brief:
+          'Parte del equipo de desarrollo creando soluciones end-to-end para distintos clientes, combinando desarrollo full stack con IA generativa sobre AWS.',
+        fullDescription:
+          '• Desarrollo de aplicaciones web con React en el frontend y Node.js/Python en el backend\n• Diseño e integración de APIs y servicios basados en modelos de Gen AI (LLMs, asistentes, automatización, generación de contenido, etc.)\n• Construcción y despliegue de soluciones en AWS (Lambda, API Gateway, S3, RDS/DynamoDB, CloudWatch, etc.)\n• Implementación de buenas prácticas: pruebas, clean code, revisión de código y CI/CD\n• Trabajo con metodologías ágiles, colaborando con equipos multidisciplinares para entregar valor de forma continua',
+        technologies: [
+          'React',
+          'Node.js',
+          'Python',
+          'AWS',
+          'Lambda',
+          'API Gateway',
+          'S3',
+          'DynamoDB',
+          'CloudWatch',
+          'Gen AI',
+          'LLMs',
+          'TypeScript',
+          'CI/CD',
+          'REST APIs',
+        ],
+      },
+    },
+  },
+  {
+    id: '1',
+    type: 'work',
+    content: {
+      en: {
         title: 'Technical Lead',
         company: 'ARMS',
-        period: '2024 - 2025',
+        period: '2023 - 2025',
         location: 'Madrid, Spain',
         brief:
           'Technical leadership and mentoring of a multidisciplinary team, driving development best practices, code quality, and pull request reviews. Designing scalable architectures and leading ML integration strategies.',
@@ -40,7 +98,7 @@ export const experiences: Experience[] = [
       es: {
         title: 'Technical Lead',
         company: 'ARMS',
-        period: '2024 - 2025',
+        period: '2023 - 2025',
         location: 'Madrid, España',
         brief:
           'Liderazgo técnico y mentoría de un equipo multidisciplinar, impulsando las mejores prácticas de desarrollo, calidad de código y revisión de pull requests. Diseño de arquitecturas escalables y liderazgo de estrategias de integración de ML.',
@@ -65,52 +123,6 @@ export const experiences: Experience[] = [
           'NLP',
           'SAP Hana',
           'gRPC',
-          'REST APIs',
-        ],
-      },
-    },
-  },
-  {
-    id: '3',
-    type: 'internship',
-    content: {
-      en: {
-        title: 'Software Developer Intern',
-        company: 'ARMS',
-        period: '2023',
-        location: 'Madrid, Spain',
-        brief:
-          '4-month internship focused on developing integration solutions with Outlook and Azure for automated email processing and information extraction.',
-        fullDescription:
-          '• Completed a comprehensive 4-month software development internship program\n• Developed an email integration solution using cloud technologies and AI services\n• Built automated data extraction systems using natural language processing\n• Implemented API integrations for document processing and information management\n• Applied machine learning techniques for intelligent data classification\n• Collaborated with development teams on real-world business solutions\n• Gained hands-on experience with cloud platforms and modern development tools\n• Contributed to workflow automation initiatives that improved operational efficiency\n• Participated in code reviews and agile development practices\n• Delivered a complete project solution from conception to deployment',
-        technologies: [
-          'Microsoft Azure',
-          'Outlook API',
-          'OpenAI API',
-          'NLP',
-          'Named Entity Recognition',
-          'Python',
-          'TypeScript',
-          'REST APIs',
-        ],
-      },
-      es: {
-        title: 'Desarrollador de Software en Prácticas',
-        company: 'ARMS',
-        period: '2023',
-        location: 'Madrid, España',
-        brief:
-          'Prácticas de 4 meses enfocadas en el desarrollo de soluciones de integración con Outlook y Azure para procesamiento automatizado de correos y extracción de información.',
-        fullDescription:
-          '• Completé un programa integral de prácticas en desarrollo de software de 4 meses\n• Desarrollé una solución de integración de correos usando tecnologías cloud y servicios de IA\n• Construí sistemas automatizados de extracción de datos usando procesamiento de lenguaje natural\n• Implementé integraciones de API para procesamiento de documentos y gestión de información\n• Apliqué técnicas de machine learning para clasificación inteligente de datos\n• Colaboré con equipos de desarrollo en soluciones de negocio del mundo real\n• Adquirí experiencia práctica con plataformas cloud y herramientas de desarrollo modernas\n• Contribuí a iniciativas de automatización de flujos de trabajo que mejoraron la eficiencia operativa\n• Participé en revisiones de código y prácticas de desarrollo ágil\n• Entregué una solución de proyecto completa desde la concepción hasta el despliegue',
-        technologies: [
-          'Microsoft Azure',
-          'Outlook API',
-          'OpenAI API',
-          'NLP',
-          'Named Entity Recognition',
-          'Python',
-          'TypeScript',
           'REST APIs',
         ],
       },
@@ -164,6 +176,52 @@ export const experiences: Experience[] = [
           'JIRA',
           'Docker',
           'Machine Learning',
+        ],
+      },
+    },
+  },
+  {
+    id: '3',
+    type: 'internship',
+    content: {
+      en: {
+        title: 'Software Developer Intern',
+        company: 'ARMS',
+        period: '2023',
+        location: 'Madrid, Spain',
+        brief:
+          '4-month internship focused on developing integration solutions with Outlook and Azure for automated email processing and information extraction.',
+        fullDescription:
+          '• Completed a comprehensive 4-month software development internship program\n• Developed an email integration solution using cloud technologies and AI services\n• Built automated data extraction systems using natural language processing\n• Implemented API integrations for document processing and information management\n• Applied machine learning techniques for intelligent data classification\n• Collaborated with development teams on real-world business solutions\n• Gained hands-on experience with cloud platforms and modern development tools\n• Contributed to workflow automation initiatives that improved operational efficiency\n• Participated in code reviews and agile development practices\n• Delivered a complete project solution from conception to deployment',
+        technologies: [
+          'Microsoft Azure',
+          'Outlook API',
+          'OpenAI API',
+          'NLP',
+          'Named Entity Recognition',
+          'Python',
+          'TypeScript',
+          'REST APIs',
+        ],
+      },
+      es: {
+        title: 'Desarrollador de Software en Prácticas',
+        company: 'ARMS',
+        period: '2023',
+        location: 'Madrid, España',
+        brief:
+          'Prácticas de 4 meses enfocadas en el desarrollo de soluciones de integración con Outlook y Azure para procesamiento automatizado de correos y extracción de información.',
+        fullDescription:
+          '• Completé un programa integral de prácticas en desarrollo de software de 4 meses\n• Desarrollé una solución de integración de correos usando tecnologías cloud y servicios de IA\n• Construí sistemas automatizados de extracción de datos usando procesamiento de lenguaje natural\n• Implementé integraciones de API para procesamiento de documentos y gestión de información\n• Apliqué técnicas de machine learning para clasificación inteligente de datos\n• Colaboré con equipos de desarrollo en soluciones de negocio del mundo real\n• Adquirí experiencia práctica con plataformas cloud y herramientas de desarrollo modernas\n• Contribuí a iniciativas de automatización de flujos de trabajo que mejoraron la eficiencia operativa\n• Participé en revisiones de código y prácticas de desarrollo ágil\n• Entregué una solución de proyecto completa desde la concepción hasta el despliegue',
+        technologies: [
+          'Microsoft Azure',
+          'Outlook API',
+          'OpenAI API',
+          'NLP',
+          'Named Entity Recognition',
+          'Python',
+          'TypeScript',
+          'REST APIs',
         ],
       },
     },
