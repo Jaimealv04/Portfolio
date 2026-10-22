@@ -1,20 +1,27 @@
+import type { Translations } from '../types/translations';
+
+export type TechCategory = keyof Translations['techStack']['categories'];
+
 export interface Technology {
   name: string;
-  category:
-    | 'backend'
-    | 'frontend'
-    | 'database'
-    | 'cloud'
-    | 'devops'
-    | 'observability'
-    | 'security'
-    | 'data-engineering'
-    | 'ai'
-    | 'architecture'
-    | 'methodologies';
+  category: TechCategory;
   color: string;
   icon?: string;
 }
+
+/** Order in which categories appear as tabs */
+export const categoryOrder: TechCategory[] = [
+  'backend',
+  'frontend',
+  'database',
+  'cloud',
+  'devops',
+  'security',
+  'data-engineering',
+  'ai',
+  'architecture',
+  'methodologies',
+];
 
 export const technologies: Technology[] = [
   // Backend

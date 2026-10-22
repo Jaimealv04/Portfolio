@@ -1,72 +1,60 @@
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { scrollToSection } from '../../hooks/useActiveSection';
+import { easeApple } from '../ui';
 
 export const Header = () => {
   const { t } = useLanguage();
+  const [firstName, ...rest] = t.header.title.split(' ');
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="w-full py-16 md:py-24 text-center relative overflow-hidden"
+    <section
+      id="header"
+      className="relative flex min-h-[88svh] w-full flex-col items-center justify-center overflow-hidden px-4 pb-16 pt-28 text-center"
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 gradient-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-        <div
-          className="absolute top-1/3 right-1/4 w-72 h-72 gradient-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"
-          style={{ animationDelay: '2s' }}
-        ></div>
-        <div
-          className="absolute bottom-1/4 left-1/2 w-72 h-72 gradient-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"
-          style={{ animationDelay: '4s' }}
-        ></div>
+      {/* Soft ambient glow */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-1/3 h-[38rem] w-[38rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/[0.08] blur-[120px] dark:bg-accent/[0.14]" />
       </div>
 
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.8 }}
-        className="relative z-10"
+      <motion.h1
+        initial={{ opacity: 0, y: 32, filter: 'blur(8px)' }}
+        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        transition={{ duration: 1, ease: easeApple }}
+        className="font-display text-6xl font-bold leading-[0.95] tracking-tightest text-foreground sm:text-7xl md:text-8xl lg:text-9xl"
       >
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-          <span className="inline-block text-gradient-primary animate-glow">
-            {t.header.title.split(' ')[0]}
-          </span>
-          <br />
-          <span className="inline-block text-gradient-secondary">
-            {t.header.title.split(' ').slice(1).join(' ')}
-          </span>
-        </h1>
+        {firstName}
+        <br />
+        <span className="bg-gradient-to-b from-foreground/70 to-foreground/30 bg-clip-text text-transparent">
+          {rest.join(' ')}
+        </span>
+      </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto px-4 leading-relaxed font-medium"
-        >
-          {t.header.subtitle}
-        </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.8, ease: easeApple }}
+        className="text-balance mt-8 max-w-2xl text-xl font-medium leading-snug text-muted-foreground md:text-2xl"
+      >
+        {t.header.subtitle}
+      </motion.p>
 
-        {/* Decorative Elements */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="mt-8 flex justify-center space-x-4"
+      <motion.button
+        onClick={() => scrollToSection('about')}
+        aria-label={t.navigation.about}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        className="absolute bottom-8 flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <motion.span
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <div className="w-2 h-2 rounded-full gradient-primary animate-pulse"></div>
-          <div
-            className="w-2 h-2 rounded-full gradient-secondary animate-pulse"
-            style={{ animationDelay: '0.5s' }}
-          ></div>
-          <div
-            className="w-2 h-2 rounded-full gradient-accent animate-pulse"
-            style={{ animationDelay: '1s' }}
-          ></div>
-        </motion.div>
-      </motion.div>
-    </motion.header>
+          <ChevronDown className="h-5 w-5" strokeWidth={1.75} />
+        </motion.span>
+      </motion.button>
+    </section>
   );
 };

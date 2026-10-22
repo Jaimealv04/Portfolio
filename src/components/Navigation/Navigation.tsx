@@ -1,306 +1,169 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
+import { Languages, Menu, Moon, Sun, X } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useTheme } from '../../contexts/ThemeContext';
+import { siteConfig } from '../../config/site';
+import { scrollToSection, useActiveSection } from '../../hooks/useActiveSection';
+import { IconButton, easeApple, spring } from '../ui';
+
+const sectionIds = siteConfig.navigation.map((item) => item.id);
 
 export const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('header');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const { t, language, setLanguage } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+  const activeSection = useActiveSection(sectionIds);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuItems = [
-    { id: 'header', label: t.navigation.home },
-    { id: 'about', label: t.navigation.about },
-    { id: 'experience', label: t.navigation.experience },
-    { id: 'techstack', label: t.navigation.techStack },
-    { id: 'projects', label: t.navigation.projects },
-  ];
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 40 });
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-
-      // Calcular progreso de scroll
-      const scrollTop = window.pageYOffset;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      setScrollProgress(scrollPercent);
-
-      // Detectar sección activa
-      const sections = [
-        'header',
-        'about',
-        'experience',
-        'techstack',
-        'projects',
-      ];
-      const currentSection = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80; // Altura del navbar
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+  const menuItems = siteConfig.navigation.map((item) => ({
+    id: item.id,
+    label: t.navigation[item.labelKey],
+  }));
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-
-      // Cerrar menú móvil si está abierto
-      setIsMobileMenuOpen(false);
-    }
+  const goTo = (id: string) => {
+    scrollToSection(id);
+    setIsMenuOpen(false);
   };
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'es' : 'en');
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const solid = isScrolled || isMenuOpen;
 
   return (
-    <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? 'glass-card shadow-modern-lg' : 'bg-transparent'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-18">
-            {/* Logo */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex-shrink-0 cursor-pointer"
-              onClick={() => scrollToSection('header')}
-            >
-              <span className="font-display text-2xl font-black text-gradient-primary">
-                Portfolio
-              </span>
-            </motion.div>
+    <motion.header
+      initial={{ y: -64, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: easeApple }}
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ${
+        solid ? 'glass border-x-0 border-t-0' : 'border-b border-transparent'
+      }`}
+    >
+      <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <button
+          onClick={() => goTo('header')}
+          className="font-display text-[17px] font-semibold tracking-tight text-foreground transition-opacity hover:opacity-70"
+        >
+          {siteConfig.brand}
+        </button>
 
-            {/* Navigation Links */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-center space-x-2">
-                {menuItems.map((item) => (
-                  <motion.button
-                    key={item.id}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                      activeSection === item.id
-                        ? 'text-white bg-gradient-to-r from-primary to-secondary shadow-modern glow-primary'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50 hover:shadow-modern'
+        {/* Desktop links */}
+        <ul className="hidden items-center gap-1 md:flex">
+          {menuItems.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <li key={item.id}>
+                <button
+                  onClick={() => goTo(item.id)}
+                  aria-current={isActive ? 'true' : undefined}
+                  className={`relative rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-300 ${
+                    isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active"
+                      transition={spring}
+                      className="absolute inset-0 -z-10 rounded-full bg-foreground/[0.07]"
+                    />
+                  )}
+                  {item.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Controls */}
+        <div className="flex items-center gap-1">
+          <IconButton
+            onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
+            aria-label={t.accessibility.toggleLanguage}
+            className="w-auto gap-1.5 px-2.5"
+          >
+            <Languages className="h-4 w-4" strokeWidth={1.75} />
+            <span className="text-xs font-semibold uppercase">{language === 'en' ? 'es' : 'en'}</span>
+          </IconButton>
+
+          <IconButton onClick={toggleTheme} aria-label={t.accessibility.toggleTheme}>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={theme}
+                initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
+                animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
+                transition={{ duration: 0.25 }}
+              >
+                {theme === 'light' ? (
+                  <Moon className="h-4 w-4" strokeWidth={1.75} />
+                ) : (
+                  <Sun className="h-4 w-4" strokeWidth={1.75} />
+                )}
+              </motion.span>
+            </AnimatePresence>
+          </IconButton>
+
+          <IconButton
+            onClick={() => setIsMenuOpen((open) => !open)}
+            aria-label={isMenuOpen ? t.accessibility.closeMenu : t.accessibility.openMenu}
+            aria-expanded={isMenuOpen}
+            className="md:hidden"
+          >
+            {isMenuOpen ? (
+              <X className="h-[18px] w-[18px]" strokeWidth={1.75} />
+            ) : (
+              <Menu className="h-[18px] w-[18px]" strokeWidth={1.75} />
+            )}
+          </IconButton>
+        </div>
+      </nav>
+
+      {/* Mobile menu: expands from the bar, Apple.com style */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: easeApple }}
+            className="overflow-hidden md:hidden"
+          >
+            <ul className="px-6 pb-8 pt-2">
+              {menuItems.map((item, index) => (
+                <motion.li
+                  key={item.id}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + index * 0.04, duration: 0.3 }}
+                >
+                  <button
+                    onClick={() => goTo(item.id)}
+                    className={`w-full py-2.5 text-left font-display text-2xl font-semibold tracking-tight transition-colors ${
+                      activeSection === item.id ? 'text-foreground' : 'text-muted-foreground'
                     }`}
                   >
                     {item.label}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            {/* Controls */}
-            <div className="flex items-center space-x-3">
-              {/* Language Toggle */}
-              <motion.button
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={toggleLanguage}
-                className="p-3 rounded-xl glass border border-border/50 shadow-modern hover:shadow-modern-lg transition-all duration-300"
-                aria-label="Toggle language"
-              >
-                <span className="text-lg filter drop-shadow-sm">
-                  {language === 'en' ? '🇪🇸' : '🇺🇸'}
-                </span>
-              </motion.button>
-
-              {/* Theme Toggle */}
-              <motion.button
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={toggleTheme}
-                className="p-3 rounded-xl glass border border-border/50 shadow-modern hover:shadow-modern-lg transition-all duration-300"
-                aria-label="Toggle theme"
-              >
-                <motion.div
-                  initial={false}
-                  animate={{ rotate: theme === 'dark' ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {theme === 'light' ? (
-                    <svg
-                      className="w-5 h-5 text-foreground filter drop-shadow-sm"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-5 h-5 text-foreground filter drop-shadow-sm"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                      />
-                    </svg>
-                  )}
-                </motion.div>
-              </motion.button>
-
-              {/* Mobile Menu Button */}
-              <div className="md:hidden">
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={toggleMobileMenu}
-                  className="p-3 rounded-xl glass border border-border/50 shadow-modern hover:shadow-modern-lg transition-all duration-300"
-                >
-                  <motion.div
-                    animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {isMobileMenuOpen ? (
-                      <svg
-                        className="w-5 h-5 text-foreground filter drop-shadow-sm"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        className="w-5 h-5 text-foreground filter drop-shadow-sm"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 6h16M4 12h16M4 18h16"
-                        />
-                      </svg>
-                    )}
-                  </motion.div>
-                </motion.button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Progress Bar */}
-        <motion.div
-          className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent origin-left rounded-full"
-          style={{ scaleX: scrollProgress / 100 }}
-          transition={{ duration: 0.1 }}
-        />
-      </motion.nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 md:hidden"
-          >
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 glass backdrop-blur-xl"
-              onClick={toggleMobileMenu}
-            />
-
-            {/* Menu Content */}
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 left-0 h-full w-80 glass-card border-r border-border/50 shadow-modern-xl"
-            >
-              <div className="flex flex-col h-full pt-24 pb-6">
-                <div className="px-6 mb-12">
-                  <span className="font-display text-3xl font-black text-gradient-primary">
-                    Portfolio
-                  </span>
-                </div>
-
-                <nav className="flex-1 px-6">
-                  <div className="space-y-3">
-                    {menuItems.map((item, index) => (
-                      <motion.button
-                        key={item.id}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ delay: index * 0.1 }}
-                        whileHover={{ scale: 1.02, x: 8 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => scrollToSection(item.id)}
-                        className={`w-full text-left px-6 py-4 rounded-xl text-lg font-semibold transition-all duration-300 ${
-                          activeSection === item.id
-                            ? 'text-white bg-gradient-to-r from-primary to-secondary shadow-modern glow-primary'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50 hover:shadow-modern'
-                        }`}
-                      >
-                        {item.label}
-                      </motion.button>
-                    ))}
-                  </div>
-                </nav>
-              </div>
-            </motion.div>
+                  </button>
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+
+      {/* Scroll progress */}
+      <motion.div
+        style={{ scaleX: progress }}
+        className="absolute inset-x-0 bottom-0 h-px origin-left bg-accent/70"
+      />
+    </motion.header>
   );
 };

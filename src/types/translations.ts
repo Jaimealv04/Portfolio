@@ -21,10 +21,12 @@ export interface Translations {
   };
   projects: {
     title: string;
+    description: string;
     viewDetails: string;
     visitProject: string;
     viewCode: string;
     technologiesUsed: string;
+    close: string;
   };
   techStack: {
     title: string;
@@ -41,10 +43,14 @@ export interface Translations {
       architecture: string;
       methodologies: string;
     };
+    empty: string;
   };
   floatingActions: {
     downloadResume: string;
     sendEmail: string;
+    linkedin: string;
+    open: string;
+    close: string;
     tooltip: {
       title: string;
       subtitle: string;
@@ -61,6 +67,15 @@ export interface Translations {
   experience: {
     title: string;
     description: string;
+    latest: string;
+    showMore: string;
+    showLess: string;
+  };
+  accessibility: {
+    toggleTheme: string;
+    toggleLanguage: string;
+    openMenu: string;
+    closeMenu: string;
   };
   footer: {
     copyright: string;

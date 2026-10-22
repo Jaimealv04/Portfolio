@@ -24,10 +24,13 @@ export const en: Translations = {
   },
   projects: {
     title: 'Projects',
+    description:
+      'Explore my featured projects, where I combine modern technology with innovative solutions',
     viewDetails: 'View Details',
     visitProject: 'Visit Project',
     viewCode: 'View Code',
     technologiesUsed: 'Technologies Used',
+    close: 'Close',
   },
   techStack: {
     title: 'Technology Stack',
@@ -44,10 +47,14 @@ export const en: Translations = {
       architecture: 'Architecture',
       methodologies: 'Methodologies',
     },
+    empty: 'No technologies available in this category',
   },
   floatingActions: {
     downloadResume: 'Download Resume',
     sendEmail: 'Send Email',
+    linkedin: 'LinkedIn',
+    open: 'Open quick actions',
+    close: 'Close quick actions',
     tooltip: {
       title: 'Quick Actions',
       subtitle: 'CV • LinkedIn • Contact',
@@ -66,6 +73,15 @@ export const en: Translations = {
     title: 'Experience',
     description:
       'My professional journey in software development and technology',
+    latest: 'Latest',
+    showMore: 'Show more',
+    showLess: 'Show less',
+  },
+  accessibility: {
+    toggleTheme: 'Toggle theme',
+    toggleLanguage: 'Switch to Spanish',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
   },
   footer: {
     copyright: '2025 Jaime Álvarez De Neyra all rights reserved',
@@ -97,10 +113,13 @@ export const es: Translations = {
   },
   projects: {
     title: 'Proyectos',
+    description:
+      'Explora mis proyectos más destacados donde combino tecnología moderna con soluciones innovadoras',
     viewDetails: 'Ver Detalles',
     visitProject: 'Visitar Proyecto',
     viewCode: 'Ver Código',
     technologiesUsed: 'Tecnologías Utilizadas',
+    close: 'Cerrar',
   },
   techStack: {
     title: 'Stack Tecnológico',
@@ -117,10 +136,14 @@ export const es: Translations = {
       architecture: 'Arquitectura',
       methodologies: 'Metodologías',
     },
+    empty: 'No hay tecnologías disponibles en esta categoría',
   },
   floatingActions: {
     downloadResume: 'Descargar CV',
     sendEmail: 'Enviar Email',
+    linkedin: 'LinkedIn',
+    open: 'Abrir acciones rápidas',
+    close: 'Cerrar acciones rápidas',
     tooltip: {
       title: 'Acciones Rápidas',
       subtitle: 'CV • LinkedIn • Contacto',
@@ -139,6 +162,15 @@ export const es: Translations = {
     title: 'Experiencia',
     description:
       'Mi trayectoria profesional en desarrollo de software y tecnología',
+    latest: 'Más Reciente',
+    showMore: 'Ver más',
+    showLess: 'Ver menos',
+  },
+  accessibility: {
+    toggleTheme: 'Cambiar tema',
+    toggleLanguage: 'Switch to English',
+    openMenu: 'Abrir menú',
+    closeMenu: 'Cerrar menú',
   },
   footer: {
     copyright: '2025 Jaime Álvarez De Neyra todos los derechos reservados',
