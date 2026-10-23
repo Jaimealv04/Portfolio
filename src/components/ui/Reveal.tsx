@@ -1,4 +1,4 @@
-import { motion, type HTMLMotionProps } from 'framer-motion';
+import { m, type HTMLMotionProps } from 'framer-motion';
 import { fadeUp, stagger } from './motion';
 
 interface RevealProps extends HTMLMotionProps<'div'> {
@@ -9,7 +9,7 @@ interface RevealProps extends HTMLMotionProps<'div'> {
 
 /** Fades content up the first time it scrolls into view. */
 export const Reveal = ({ staggerChildren, delay = 0, children, ...props }: RevealProps) => (
-  <motion.div
+  <m.div
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: '-80px' }}
@@ -17,11 +17,11 @@ export const Reveal = ({ staggerChildren, delay = 0, children, ...props }: Revea
     {...props}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 export const RevealItem = ({ children, ...props }: HTMLMotionProps<'div'>) => (
-  <motion.div variants={fadeUp} {...props}>
+  <m.div variants={fadeUp} {...props}>
     {children}
-  </motion.div>
+  </m.div>
 );

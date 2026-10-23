@@ -1,4 +1,4 @@
-import { MotionConfig } from 'framer-motion';
+import { LazyMotion, MotionConfig } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { Navigation } from './components/Navigation/Navigation';
@@ -11,6 +11,8 @@ import { Certification } from './components/Certification/Certification';
 import { Footer } from './components/Footer/Footer';
 import { FloatingActions } from './components/FloatingActions/FloatingActions';
 import { useSEO } from './hooks/useSEO';
+
+const loadMotionFeatures = () => import('./lib/motionFeatures').then((mod) => mod.default);
 
 function AppContent() {
   useSEO();
@@ -39,9 +41,11 @@ function App() {
     <ThemeProvider>
       <LanguageProvider>
         {/* Respect the OS "reduce motion" setting for every animation */}
-        <MotionConfig reducedMotion="user">
-          <AppContent />
-        </MotionConfig>
+        <LazyMotion features={loadMotionFeatures} strict>
+          <MotionConfig reducedMotion="user">
+            <AppContent />
+          </MotionConfig>
+        </LazyMotion>
       </LanguageProvider>
     </ThemeProvider>
   );

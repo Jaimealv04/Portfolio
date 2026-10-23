@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { categoryOrder, technologies, type TechCategory } from '../../data/technologies';
 import { Reveal, Section, easeApple, spring } from '../ui';
@@ -41,7 +41,7 @@ export const TechStack = () => {
                 }`}
               >
                 {isActive && (
-                  <motion.span
+                  <m.span
                     layoutId="tech-tab"
                     transition={spring}
                     className="absolute inset-0 -z-10 rounded-full bg-surface shadow-soft dark:bg-surface-elevated"
@@ -56,7 +56,7 @@ export const TechStack = () => {
 
       <div role="tabpanel" className="min-h-[18rem]">
         <AnimatePresence mode="wait">
-          <motion.ul
+          <m.ul
             key={activeCategory}
             initial="hidden"
             animate="visible"
@@ -65,7 +65,7 @@ export const TechStack = () => {
             className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
           >
             {items.map((tech) => (
-              <motion.li
+              <m.li
                 key={tech.name}
                 variants={{
                   hidden: { opacity: 0, y: 12, scale: 0.97 },
@@ -80,9 +80,9 @@ export const TechStack = () => {
                 />
                 {tech.icon && <span className="text-lg">{tech.icon}</span>}
                 <span className="truncate text-[15px] font-medium text-foreground">{tech.name}</span>
-              </motion.li>
+              </m.li>
             ))}
-          </motion.ul>
+          </m.ul>
         </AnimatePresence>
 
         {items.length === 0 && (

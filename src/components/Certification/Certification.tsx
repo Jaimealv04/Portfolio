@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowUpRight, Award } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { siteConfig } from '../../config/site';
@@ -11,7 +11,7 @@ export const Certification = () => {
   return (
     <Section id="certification" title={t.certification.title} description={t.certification.subtitle} width="md">
       <Reveal>
-        <motion.a
+        <m.a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
@@ -54,7 +54,7 @@ export const Certification = () => {
               strokeWidth={2}
             />
           </span>
-        </motion.a>
+        </m.a>
       </Reveal>
     </Section>
   );

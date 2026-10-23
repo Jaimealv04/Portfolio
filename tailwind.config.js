@@ -55,6 +55,25 @@ export default {
         float:
           '0 4px 8px rgb(0 0 0 / 0.04), 0 24px 64px rgb(0 0 0 / 0.14)',
       },
+      keyframes: {
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(24px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        nudge: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(6px)' },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) both',
+        'fade-in': 'fade-in 0.8s ease both',
+        nudge: 'nudge 2.2s ease-in-out infinite',
+      },
       transitionTimingFunction: {
         apple: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
         spring: 'cubic-bezier(0.32, 0.72, 0, 1)',

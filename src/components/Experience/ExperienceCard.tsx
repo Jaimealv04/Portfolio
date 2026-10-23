@@ -1,5 +1,5 @@
 import { useId, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import {
   BookOpen,
   Briefcase,
@@ -78,7 +78,7 @@ export const ExperienceCard = ({ experience, isLast }: ExperienceCardProps) => {
 
         <AnimatePresence initial={false}>
           {isExpanded && (
-            <motion.ul
+            <m.ul
               id={detailsId}
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
@@ -95,7 +95,7 @@ export const ExperienceCard = ({ experience, isLast }: ExperienceCardProps) => {
                   <span>{point}</span>
                 </li>
               ))}
-            </motion.ul>
+            </m.ul>
           )}
         </AnimatePresence>
 

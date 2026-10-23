@@ -35,7 +35,9 @@ export const projects: Project[] = [
       'Docker',
       'AWS',
     ],
-    imageUrl: '/Streakfindercapture.png',
+    imageUrl: '/projects/streakfinder-1024.webp',
+    imageSrcSet:
+      '/projects/streakfinder-640.webp 640w, /projects/streakfinder-1024.webp 1024w, /projects/streakfinder-1600.webp 1600w',
     projectUrl: 'https://streakfinder.com',
   },
 //   {
@@ -117,7 +119,9 @@ export const projects: Project[] = [
       'PWA',
       'Swagger',
     ],
-    imageUrl: '/EgohouseCapture.png',
+    imageUrl: '/projects/egohouse-1024.webp',
+    imageSrcSet:
+      '/projects/egohouse-640.webp 640w, /projects/egohouse-1024.webp 1024w, /projects/egohouse-1600.webp 1600w',
     projectUrl: 'https://egohousebynavs.com',
   },
 ];

@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { X } from 'lucide-react';
 import { IconButton } from './Button';
 import { easeApple } from './motion';
@@ -30,7 +30,7 @@ export const Modal = ({ open, onClose, closeLabel, labelledBy, children }: Modal
   return createPortal(
     <AnimatePresence>
       {open && (
-        <motion.div
+        <m.div
           className="fixed inset-0 z-[60] flex items-end justify-center p-0 sm:items-center sm:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -42,7 +42,7 @@ export const Modal = ({ open, onClose, closeLabel, labelledBy, children }: Modal
             onClick={onClose}
             aria-hidden="true"
           />
-          <motion.div
+          <m.div
             role="dialog"
             aria-modal="true"
             aria-labelledby={labelledBy}
@@ -60,8 +60,8 @@ export const Modal = ({ open, onClose, closeLabel, labelledBy, children }: Modal
               <X className="h-4 w-4" strokeWidth={2.25} />
             </IconButton>
             <div className="overflow-y-auto overscroll-contain">{children}</div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>,
     document.body

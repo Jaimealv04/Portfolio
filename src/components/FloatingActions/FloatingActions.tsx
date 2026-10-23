@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { ChevronRight, FileDown, Linkedin, Mail, Plus } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { siteConfig } from '../../config/site';
@@ -66,7 +66,7 @@ export const FloatingActions = () => {
     <div ref={containerRef} className="fixed bottom-6 right-4 z-50 sm:right-6">
       <AnimatePresence>
         {isExpanded && (
-          <motion.div
+          <m.div
             role="menu"
             initial={{ opacity: 0, scale: 0.9, y: 8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -95,7 +95,7 @@ export const FloatingActions = () => {
 
             <AnimatePresence initial={false}>
               {showCVOptions && (
-                <motion.div
+                <m.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -116,7 +116,7 @@ export const FloatingActions = () => {
                       </a>
                     ))}
                   </div>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
 
@@ -147,14 +147,14 @@ export const FloatingActions = () => {
               </RowIcon>
               {t.floatingActions.linkedin}
             </a>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* Intro tooltip */}
       <AnimatePresence>
         {showIntroTooltip && !isExpanded && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 8 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 8 }}
@@ -163,11 +163,11 @@ export const FloatingActions = () => {
           >
             <p className="text-sm font-semibold text-foreground">{t.floatingActions.tooltip.title}</p>
             <p className="text-xs text-muted-foreground">{t.floatingActions.tooltip.subtitle}</p>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
-      <motion.button
+      <m.button
         onClick={toggle}
         aria-label={isExpanded ? t.floatingActions.close : t.floatingActions.open}
         aria-expanded={isExpanded}
@@ -179,10 +179,10 @@ export const FloatingActions = () => {
           isExpanded ? 'glass text-foreground' : 'bg-accent text-accent-foreground'
         }`}
       >
-        <motion.span animate={{ rotate: isExpanded ? 45 : 0 }} transition={spring}>
+        <m.span animate={{ rotate: isExpanded ? 45 : 0 }} transition={spring}>
           <Plus className="h-6 w-6" strokeWidth={2} />
-        </motion.span>
-      </motion.button>
+        </m.span>
+      </m.button>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
+import { AnimatePresence, m, useScroll, useSpring } from 'framer-motion';
 import { Languages, Menu, Moon, Sun, X } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -39,11 +39,8 @@ export const Navigation = () => {
   const solid = isScrolled || isMenuOpen;
 
   return (
-    <motion.header
-      initial={{ y: -64, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: easeApple }}
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ${
+    <header
+      className={`animate-fade-in fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ${
         solid ? 'glass border-x-0 border-t-0' : 'border-b border-transparent'
       }`}
     >
@@ -69,7 +66,7 @@ export const Navigation = () => {
                   }`}
                 >
                   {isActive && (
-                    <motion.span
+                    <m.span
                       layoutId="nav-active"
                       transition={spring}
                       className="absolute inset-0 -z-10 rounded-full bg-foreground/[0.07]"
@@ -95,7 +92,7 @@ export const Navigation = () => {
 
           <IconButton onClick={toggleTheme} aria-label={t.accessibility.toggleTheme}>
             <AnimatePresence mode="wait" initial={false}>
-              <motion.span
+              <m.span
                 key={theme}
                 initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
                 animate={{ rotate: 0, opacity: 1, scale: 1 }}
@@ -107,7 +104,7 @@ export const Navigation = () => {
                 ) : (
                   <Sun className="h-4 w-4" strokeWidth={1.75} />
                 )}
-              </motion.span>
+              </m.span>
             </AnimatePresence>
           </IconButton>
 
@@ -129,7 +126,7 @@ export const Navigation = () => {
       {/* Mobile menu: expands from the bar, Apple.com style */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -138,7 +135,7 @@ export const Navigation = () => {
           >
             <ul className="px-6 pb-8 pt-2">
               {menuItems.map((item, index) => (
-                <motion.li
+                <m.li
                   key={item.id}
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -152,18 +149,18 @@ export const Navigation = () => {
                   >
                     {item.label}
                   </button>
-                </motion.li>
+                </m.li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* Scroll progress */}
-      <motion.div
+      <m.div
         style={{ scaleX: progress }}
         className="absolute inset-x-0 bottom-0 h-px origin-left bg-accent/70"
       />
-    </motion.header>
+    </header>
   );
 };

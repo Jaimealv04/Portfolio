@@ -22,8 +22,12 @@ export const ProjectMedia = ({ project, title, fit = 'cover' }: ProjectMediaProp
     return (
       <img
         src={project.imageUrl}
+        srcSet={project.imageSrcSet}
+        // Cards: full width on mobile, half on desktop. Modal: up to 768px.
+        sizes={fit === 'cover' ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 816px) 768px, 100vw'}
         alt={title}
         loading="lazy"
+        decoding="async"
         className={
           fit === 'cover'
             ? 'h-full w-full object-cover object-top transition-transform duration-700 ease-apple group-hover:scale-[1.04]'
